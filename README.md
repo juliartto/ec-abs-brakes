@@ -1,7 +1,7 @@
 # 🚗 Modelagem e Controle de ABS via Simulink
 
 ![Status do Projeto](https://img.shields.io/badge/Status-Concluído-success)
-![Linguagem](https://img.shields.io/badge/MATLAB-R2023a%2B-blue)
+![Linguagem](https://img.shields.io/badge/MATLAB-R2026a%2B-blue)
 ![Simulink](https://img.shields.io/badge/Simulink-Modelagem-orange)
 
 Este repositório contém a modelagem, simulação e implementação em ambiente **MATLAB/Simulink** de um **Sistema de Frenagem Antibloqueio (ABS)**, desenvolvido para a disciplina de Análise de Sistemas Lineares (ASL) e publicado no **X Simpósio de Controle e Processos Industriais (SIMPROIN'25)**.
@@ -15,7 +15,7 @@ O objetivo central do projeto é realizar uma análise comparativa de controlado
 Abaixo encontra-se a listagem e a descrição detalhada do papel de cada arquivo no projeto:
 
 ### 📄 Documentação
-* **`Projeto_ASL.pdf`**: Artigo científico completo submetido ao SIMPROIN'25 ("*Modelagem e Controle do Sistema ABS via Simulink: Análise Comparativa de Controladores sobre a Dinâmica de Escorregamento*"). Contém toda a revisão teórica, equacionamento matemático da planta, design analítico do PID no domínio da frequência, design do SMC no domínio do tempo e as conclusões da análise de robustez.
+* **`Modelagem e Controle do Sistema ABS via SimuLink.pdf`**: Artigo científico completo submetido ao SIMPROIN'25 ("*Modelagem e Controle do Sistema ABS via Simulink: Análise Comparativa de Controladores sobre a Dinâmica de Escorregamento*"). Contém toda a revisão teórica, equacionamento matemático da planta, design analítico do PID no domínio da frequência, design do SMC no domínio do tempo e as conclusões da análise de robustez.
 
 ### ⚙️ Modelos Simulink (`.slx`)
 * **`PID_sldemo_absbrake.slx`**: Modelo da planta do ABS modificado para utilizar o controlador **PID**. O controlador foi implementado utilizando o bloco nativo do Simulink (forma paralela, tempo contínuo). Atua de forma mais linear e suave sobre a válvula do freio.
@@ -40,12 +40,6 @@ Os scripts em código estruturado são responsáveis pela automação dos testes
 * **`sldemo_absbrakeplots.m`**: Script nativo do MATLAB adaptado para plotar a velocidade linear do veículo e a velocidade tangencial da roda.
 
 ---
-
-## 🚀 Como Executar as Simulações
-
-Para reproduzir os resultados perfeitamente, garantindo que as variáveis do espaço de estados do carro sejam carregadas corretamente, siga este passo a passo:
-
-### 1. Inicialização do Sistema (Obrigatório)
-Antes de rodar qualquer modelo ou gráfico, o MATLAB precisa conhecer a física do carro. No *Command Window*, digite:
-```matlab
-sldemo_absdata
+### 👥 Autores
+| [<img loading="lazy" src="https://avatars.githubusercontent.com/u/188865867?v=4" width=115><br><sub>Felipe Rochoel</sub>](https://github.com/rochoel-felipe) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/132113334?v=4" width=115><br><sub>Julia Romanetto</sub>](https://github.com/juliartto) |  [<img loading="lazy" src="https://avatars.githubusercontent.com/u/188619435?v=4" width=115><br><sub>Vinicius Gabriel</sub>](https://github.com/Vinegabriel) |
+:---: | :---: | :---: |
