@@ -26,23 +26,24 @@ Abaixo encontra-se a listagem e a descrição detalhada do papel de cada arquivo
 ### 💻 Scripts MATLAB (`.m`)
 Os scripts em código estruturado são responsáveis pela automação dos testes, cálculo de índices de desempenho e plotagem das curvas dinâmicas:
 
-* **`sldemo_absdata.m`**: **Script essencial de inicialização**. Define constantes físicas fundamentais do veículo (massa nominal m = 500 kg, inércia da roda I = 5 kg·m², raio do pneu Rr = 0.4 m, velocidade inicial v0 = 28 m/s) e a curva não-linear de atrito pneu-pista (*mu-slip*). 
-* **`SMC_nominal.m` / Scripts Nominais (PID)**: Scripts automáticos para simulação sob **condições nominais (ideais)**.
-  - Carregam as variáveis e configuram os ganhos no workspace (como $K_{smc}$ e $\phi$ para o SMC, ou $K_p, K_i, K_d$ para o PID).
-  - Executam o respectivo modelo `.slx` em malha fechada.
-  - **Gráficos Gerados**: Criam figuras com a curva de escorregamento real vs. a referência de 0.2, e o sinal de esforço de controle (pressão hidráulica).
-  - **Métricas Calculadas**: Exibem no terminal uma tabela com os índices de erro **RMSE, ISE, IAE e ITAE**.
-* **`SMC_variacao_parametros.m`**: Script focado no **teste de robustez** sob incertezas severas na planta.
-  - Avalia o comportamento do sistema com desvios de **-30%, 0% (Nominal) e +30%** nos parâmetros físicos da planta.
-  - Variável de configuração interna `modo`: alternável entre `'escalar'` (injetar variações na massa do veículo) ou `'mu'` (transições para pistas com menor aderência).
-  - **Gráficos Gerados**: Executa um loop de simulações e plota as curvas sobrepostas, evidenciando a capacidade do controlador de rejeitar perturbações externas.
+* **`sldemo_absdata.m`**: **Script essencial de inicialização**. Define constantes físicas fundamentais do veículo (massa nominal m = 500 kg, inércia da roda I = 5 kg·m², raio do pneu Rr = 0.4 m, velocidade inicial v0 = 28 m/s) e a curva não-linear de atrito pneu-pista (*mu-slip*). **Deve ser executado antes de rodar os modelos**.
+
+#### 🔹 Scripts do Controlador SMC
+* **`SMC_nominal.m`**: Script automático para simulação sob condições ideais. Carrega os ganhos, roda a simulação, calcula as métricas de erro integral (RMSE, ISE, IAE e ITAE) e plota o rastreamento do escorregamento vs. esforço de controle.
+* **`SMC_variacao_parametros.m`**: Teste de robustez do SMC. Roda o sistema com desvios de -30%, 0% e +30% na massa do carro (`modo = 'escalar'`) ou na pista (`modo = 'mu'`), gerando gráficos sobrepostos para atestar a estabilidade frente a distúrbios.
+
+#### 🔹 Scripts do Controlador PID
+* **`subplots.m`**: Script automático para análise do PID em condições nominais. Roda o modelo `PID_sldemo_absbrake`, calcula as métricas de desempenho (RMSE, ISE, IAE, ITAE) e gera uma figura completa com 3 subplots: a curva de escorregamento, o sinal de controle u(t) e o respectivo espectrograma do sinal.
+* **`variacao_parametros_pid.m`**: Teste de robustez dedicado ao PID. Funciona de forma similar ao teste do SMC, avaliando a perda de desempenho do sistema linear sob incertezas de -30% a +30% na massa ou pista.
+
+#### 🔹 Utilidades
 * **`sldemo_absbrakeplots.m`**: Script nativo do MATLAB adaptado para plotar a velocidade linear do veículo e a velocidade tangencial da roda.
 
 ---
 
 ## 🚀 Como Executar as Simulações
 
-Para reproduzir os resultados perfeitamente, garantindo que as variáveis de espaço de estado do carro sejam carregadas corretamente, siga este passo a passo:
+Para reproduzir os resultados perfeitamente, garantindo que as variáveis do espaço de estados do carro sejam carregadas corretamente, siga este passo a passo:
 
 ### 1. Inicialização do Sistema (Obrigatório)
 Antes de rodar qualquer modelo ou gráfico, o MATLAB precisa conhecer a física do carro. No *Command Window*, digite:
