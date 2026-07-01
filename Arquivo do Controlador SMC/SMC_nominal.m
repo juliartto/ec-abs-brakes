@@ -11,8 +11,8 @@
 % =========================================================================
 
 %% --- Parametros SMC (ficam no workspace para o modelo usar) -------------
-K_smc = 500;    % ganho do SMC
-phi   = 0.12;   % largura da camada limite
+K_smc = 3;    % ganho do SMC
+phi   = 0.08;   % largura da camada limite
 
 assignin('base', 'K_smc', K_smc);
 assignin('base', 'phi',   phi);
@@ -39,6 +39,15 @@ referencia = 0.2;
 idxFim = find(s > 0.5, 1, 'first');
 if isempty(idxFim), idxFim = numel(s); end
 idxFim = idxFim - 1;
+
+% Encontra o índice onde o carro parou (quando o slip explode numérico)
+idx = find(ss > 0.5, 1); 
+
+if ~isempty(idx)
+    % Zera todos os valores de escorregamento e controle do índice até o final
+    ss(idx:end) = 0; 
+    uu(idx:end) = 0; 
+end
 
 tw = t_slip(1:idxFim);
 sw = s(1:idxFim);

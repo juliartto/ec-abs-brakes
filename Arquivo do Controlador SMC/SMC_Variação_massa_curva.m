@@ -1,5 +1,5 @@
 sldemo_absdata;
-K_smc = 500; phi = 0.12;
+K_smc = 3; phi = 0.08;
 mdl = 'SMC_sldemo_absbrake';
 load_system(mdl);
 bloco_mu = 'SMC_sldemo_absbrake/Vehicle Dynamics/Vehicle  /mu-slip friction curve';
@@ -54,6 +54,6 @@ yline(0.2,'--k','LineWidth',1.2,'DisplayName','Referencia (0.2)');
 xlabel('Tempo (s)'); ylabel('Escorregamento');
 title('SMC nominal - Variacao da curva \mu-escorregamento (\pm30%)');
 legend('Location','best'); ylim([0 1]); hold off;
-exportgraphics(f4,'smc_variacao_mu.png','Resolution',300);
+%exportgraphics(f4,'smc_variacao_mu.png','Resolution',300);
 
 disp('Figuras salvas!');

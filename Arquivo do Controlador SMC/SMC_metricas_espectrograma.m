@@ -5,8 +5,8 @@
 %  Estrutura identica ao subplots.m do PID.
 % =========================================================================
 
-assignin('base', 'K_smc', 500);
-assignin('base', 'phi',   0.12);
+assignin('base', 'K_smc', 3);
+assignin('base', 'phi',   0.08);
 sldemo_absdata;
 
 mdl = 'SMC_sldemo_absbrake';
